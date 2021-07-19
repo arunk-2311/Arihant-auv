@@ -1,0 +1,130 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+    <world name="iitm_mini_project_nav_world">
+        <include>
+            <uri>model://ground_plane</uri>
+        </include>
+        
+        <include>
+            <uri>model://sun</uri>
+        </include>
+
+	<model name="walls">
+		<static>true</static>
+		<link name="wall_1">
+			<pose>1.25 0.4 0.25 0 0 0</pose>
+			<collision name="wall">
+				<geometry>
+					<box>
+						<size>2.5 0.03 0.5</size>
+					</box>
+				</geometry>
+			</collision>
+			
+			<visual name="visual">
+				<geometry>
+					<box>
+						<size>2.5 0.03 0.5</size>
+					</box>
+				</geometry>
+			</visual>
+		</link>
+
+		<link name="wall_2">
+			<pose>0.85 -0.4 0.25 0 0 0</pose>
+			<collision name="wall">
+				<geometry>
+					<box>
+						<size>1.7 0.03 0.5</size>
+					</box>
+				</geometry>
+			</collision>
+			
+			<visual name="visual">
+				<geometry>
+					<box>
+						<size>1.7 0.03 0.5</size>
+					</box>
+				</geometry>
+			</visual>
+		</link>
+
+		<link name="wall_3">
+			<pose>2.5 -0.45 0.25 0 0 0</pose>
+			<collision name="wall">
+				<geometry>
+					<box>
+						<size>0.03 1.7 0.5</size>
+					</box>
+				</geometry>
+			</collision>
+			
+			<visual name="visual">
+				<geometry>
+					<box>
+						<size>0.03 1.7 0.5</size>
+					</box>
+				</geometry>
+			</visual>
+		</link>
+
+		<link name="wall_4">
+			<pose>1.7 -1.25 0.25 0 0 0</pose>
+			<collision name="wall">
+				<geometry>
+					<box>
+						<size>0.03 1.7 0.5</size>
+					</box>
+				</geometry>
+			</collision>
+			
+			<visual name="visual">
+				<geometry>
+					<box>
+						<size>0.03 1.7 0.5</size>
+					</box>
+				</geometry>
+			</visual>
+		</link>
+
+		<link name="wall_5">
+			<pose>2.5 -2.1 0.25 0 0 0</pose>
+			<collision name="wall">
+				<geometry>
+					<box>
+						<size>1.6 0.03 0.5</size>
+					</box>
+				</geometry>
+			</collision>
+			
+			<visual name="visual">
+				<geometry>
+					<box>
+						<size>1.6 0.03 0.5</size>
+					</box>
+				</geometry>
+			</visual>
+		</link>
+
+		<link name="wall_6">
+			<pose>3.3 -0.85 0.25 0 0 0</pose>
+			<collision name="wall">
+				<geometry>
+					<box>
+						<size>0.03 2.5 0.5</size>
+					</box>
+				</geometry>
+			</collision>
+			
+			<visual name="visual">
+				<geometry>
+					<box>
+						<size>0.03 2.5 0.5</size>
+					</box>
+				</geometry>
+			</visual>
+		</link>
+	</model>
+
+    </world>
+</sdf>

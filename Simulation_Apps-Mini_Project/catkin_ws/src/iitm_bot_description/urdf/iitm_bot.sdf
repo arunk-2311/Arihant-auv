@@ -1,0 +1,413 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+
+	<model name="iitm_bot">
+		<static>false</static>
+
+		<link name='chassis'>
+			<pose>0 0 0.1 0 0 0</pose>
+			<inertial>
+				<mass>10.0</mass>
+				<inertia>
+					<ixx>1.0</ixx>
+					<ixy>0.0</ixy>
+					<ixz>0.0</ixz>
+					<iyy>1.0</iyy>
+					<iyz>0.0</iyz>
+					<izz>1.0</izz>
+				</inertia>
+			</inertial>
+
+			<collision name='chassis_collision'>
+				<geometry>
+					<box>
+						<size>0.45 0.32 0.1</size>
+					</box>
+				</geometry>
+			</collision>
+
+			<visual name='chassis_visual'>
+				<geometry>
+					<box>
+						<size>0.45 0.32 0.1</size>
+					</box>
+				</geometry>
+
+				<material>
+					<ambient>0.1 0.1 0.9 1</ambient>
+					<diffuse>0.1 0.1 0.2 1</diffuse>
+					<specular>0 0 0 0</specular>
+					<emissive>0 0 0 1</emissive>
+				</material>
+			</visual>
+
+			<collision name='caster_collision'>
+				<pose>0.15 0 -0.05 0 0 0</pose>
+				<geometry>
+					<sphere>
+						<radius>.05</radius>
+					</sphere>
+				</geometry>
+				<surface>
+					<friction>
+						<ode>
+							<mu>0</mu>
+							<mu2>0</mu2>
+							<slip1>1.0</slip1>
+							<slip2>1.0</slip2>
+						</ode>
+					</friction>
+				</surface>
+			</collision>
+
+			<visual name='caster_visual'>
+				<pose>0.15 0 -0.05 0 0 0</pose>
+				<geometry>
+					<sphere>
+						<radius>.05</radius>
+					</sphere>
+				</geometry>
+
+				<material>
+					<ambient>0 0 0 1</ambient>
+					<diffuse>0.1 0.1 0.2 1</diffuse>
+					<specular>0 0 0 0</specular>
+					<emissive>0 0 0 1</emissive>
+				</material>
+			</visual>
+		</link>
+
+		<link name="left_wheel">
+			<pose>-0.2 0.19 0.1 0 1.5707 1.5707</pose>
+
+			<inertial>
+				<mass>1.0</mass>
+				<inertia>
+					<ixx>0.67</ixx>
+					<ixy>0.0</ixy>
+					<ixz>0.0</ixz>
+					<iyy>0.67</iyy>
+					<iyz>0.0</iyz>
+					<izz>0.67</izz>
+				</inertia>
+			</inertial>
+ 
+			<collision name="left_wheel_collision">
+				<geometry>
+					<cylinder>
+						<radius>.1</radius>
+						<length>.05</length>
+					</cylinder>
+				</geometry>
+			</collision>
+
+			<visual name="left_wheel_visual">
+				<geometry>
+					<cylinder>
+						<radius>.1</radius>
+						<length>.05</length>
+					</cylinder>
+				</geometry>
+
+				<material>
+					<ambient>0.1 0.1 0.1 1</ambient>
+					<diffuse>0.1 0.1 0.2 1</diffuse>
+					<specular>0 0 0 0</specular>
+					<emissive>0 0 0 1</emissive>
+				</material>
+			</visual>
+		</link>
+
+		<link name="right_wheel">
+			<pose>-0.2 -0.19 0.1 0 1.5707 1.5707</pose>
+
+			<inertial>
+				<mass>1.0</mass>
+				<inertia>
+					<ixx>0.67</ixx>
+					<ixy>0.0</ixy>
+					<ixz>0.0</ixz>
+					<iyy>0.67</iyy>
+					<iyz>0.0</iyz>
+					<izz>0.67</izz>
+				</inertia>
+			</inertial>
+
+			<collision name="right_wheel_collision">
+				<geometry>
+					<cylinder>
+						<radius>.1</radius>
+						<length>.05</length>
+					</cylinder>
+				</geometry>
+			</collision>
+
+			<visual name="right_wheel_visual">
+				<geometry>
+					<cylinder>
+						<radius>.1</radius>
+						<length>.05</length>
+					</cylinder>
+				</geometry>
+
+				<material>
+					<ambient>0.1 0.1 0.1 1</ambient>
+					<diffuse>0.1 0.1 0.2 1</diffuse>
+					<specular>0 0 0 0</specular>
+					<emissive>0 0 0 1</emissive>
+				</material>
+			</visual>
+		</link>
+
+		<joint type="revolute" name="left_wheel_joint">
+			<pose>0 0 0.03 0 0 0</pose>
+			<child>left_wheel</child>
+			<parent>chassis</parent>
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis>
+		</joint>
+
+		<joint type="revolute" name="right_wheel_joint">
+			<pose>0 0 -0.03 0 0 0</pose>
+			<child>right_wheel</child>
+			<parent>chassis</parent>
+
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis>
+		</joint>
+
+		<link name="front_ray_sensor">
+			<pose>0.22 0 0.155 0 0 0</pose>
+
+			<collision name="front_sensor_collision">
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+			</collision>
+
+			<visual name="front_sensor_visual">
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+
+				<material>
+					<ambient>0.9 0.9 0.9 1</ambient>
+					<diffuse>0.1 0.1 0.2 1</diffuse>
+					<specular>0 0 0 0</specular>
+					<emissive>0 0 0 1</emissive>
+				</material>
+			</visual>
+
+			<sensor name="front_ray_sensor" type="ray">
+				<pose>0 0 0 0 0 0</pose>
+				<always_on>true</always_on>
+				<visualize>true</visualize>
+				<update_rate>30</update_rate>
+
+				<ray>
+					<scan>
+						<horizontal>
+							<samples>1</samples>
+							<resolution>1</resolution>
+							<min_angle>-0.01</min_angle>
+							<max_angle>0.01</max_angle>
+						</horizontal>
+					</scan>
+
+					<range>
+						<min>0.01</min>
+						<max>10.0</max>
+						<resolution>0.01</resolution>
+					</range>
+
+					<noise>
+						<type>gaussian</type>
+						<mean>0.0</mean>
+						<stddev>0.05</stddev>
+					</noise>
+				</ray>
+
+				<plugin name="iitm_bot_front_sensor" filename="libgazebo_ros_laser.so">
+					<topicName>/iitm_bot/ray/front_sensor</topicName>
+					<frameName>front_sensor</frameName>
+				</plugin>
+			</sensor>
+		</link>
+
+		<joint name="front_ray_sensor_joint" type="fixed">
+			<pose>0 0 0 0 0 0</pose>
+			<parent>chassis</parent>
+			<child>front_ray_sensor</child>
+		</joint>
+
+
+		<link name="left_ray_sensor">
+			<pose>0.15 0.155 0.155 0 0 0</pose>
+
+			<collision name="left_sensor_collision">
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+			</collision>
+
+			<visual name="left_sensor_visual">
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+
+				<material>
+					<ambient>0.9 0.9 0.9 1</ambient>
+					<diffuse>0.1 0.1 0.2 1</diffuse>
+					<specular>0 0 0 0</specular>
+					<emissive>0 0 0 1</emissive>
+				</material>
+			</visual>
+
+			<sensor name="left_ray_sensor" type="ray">
+				<pose>0 0 0 0 0 1.5717</pose>
+				<always_on>true</always_on>
+				<visualize>true</visualize>
+				<update_rate>30</update_rate>
+
+				<ray>
+					<scan>
+						<horizontal>
+							<samples>1</samples>
+							<resolution>1</resolution>
+							<min_angle>-0.01</min_angle>
+							<max_angle>0.01</max_angle>
+						</horizontal>
+					</scan>
+
+					<range>
+						<min>0.01</min>
+						<max>10.0</max>
+						<resolution>0.01</resolution>
+					</range>
+
+					<noise>
+						<type>gaussian</type>
+						<mean>0.0</mean>
+						<stddev>0.05</stddev>
+					</noise>
+				</ray>
+
+				<plugin name="iitm_bot_left_sensor" filename="libgazebo_ros_laser.so">
+					<topicName>/iitm_bot/ray/left_sensor</topicName>
+					<frameName>left_sensor</frameName>
+				</plugin>
+			</sensor>
+		</link>
+
+		<joint name="left_ray_sensor_joint" type="fixed">
+			<pose>0 0 0 0 0 0</pose>
+			<parent>chassis</parent>
+			<child>left_ray_sensor</child>
+		</joint>
+
+
+		<link name="right_ray_sensor">
+			<pose>0.15 -0.155 0.155 0 0 0</pose>
+
+			<collision name="right_sensor_collision">
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+			</collision>
+
+			<visual name="right_sensor_visual">
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+
+				<material>
+					<ambient>0.9 0.9 0.9 1</ambient>
+					<diffuse>0.1 0.1 0.2 1</diffuse>
+					<specular>0 0 0 0</specular>
+					<emissive>0 0 0 1</emissive>
+				</material>
+			</visual>
+
+			<sensor name="right_ray_sensor" type="ray">
+				<pose>0 0 0 0 0 -1.5717</pose>
+				<always_on>true</always_on>
+				<visualize>true</visualize>
+				<update_rate>30</update_rate>
+
+				<ray>
+					<scan>
+						<horizontal>
+							<samples>1</samples>
+							<resolution>1</resolution>
+							<min_angle>-0.01</min_angle>
+							<max_angle>0.01</max_angle>
+						</horizontal>
+					</scan>
+
+					<range>
+						<min>0.01</min>
+						<max>10.0</max>
+						<resolution>0.01</resolution>
+					</range>
+
+					<noise>
+						<type>gaussian</type>
+						<mean>0.0</mean>
+						<stddev>0.05</stddev>
+					</noise>
+				</ray>
+
+				<plugin name="iitm_bot_right_sensor" filename="libgazebo_ros_laser.so">
+					<topicName>/iitm_bot/ray/right_sensor</topicName>
+					<frameName>right_sensor</frameName>
+				</plugin>
+			</sensor>
+		</link>
+
+		<joint name="right_ray_sensor_joint" type="fixed">
+			<pose>0 0 0 0 0 0</pose>
+			<parent>chassis</parent>
+			<child>right_ray_sensor</child>
+		</joint>
+
+
+		<plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+			<alwaysOn>true</alwaysOn>
+			<legacyMode>false</legacyMode>
+			<updateRate>30</updateRate>
+			<robotNamespace>/</robotNamespace>
+			<leftJoint>left_wheel_joint</leftJoint>
+			<rightJoint>right_wheel_joint</rightJoint>
+			<wheelSeparation>0.36</wheelSeparation>
+			<wheelDiameter>0.2</wheelDiameter>
+			<wheelAcceleration>1.0</wheelAcceleration>
+			<wheelTorque>20</wheelTorque>
+			<torque>20</torque>
+			<commandTopic>iitm_bot/cmd_vel</commandTopic>
+			<odometryTopic>iitm_bot/odom</odometryTopic>
+			<odometryFrame>odom</odometryFrame>
+			<odometrySource>world</odometrySource>
+			<rosDebugLevel>na</rosDebugLevel>
+			<robotBaseFrame>base_footprint</robotBaseFrame>
+			<publishWheelTF>true</publishWheelTF>
+			<publishWheelJointState>true</publishWheelJointState>
+			<publishTf>true</publishTf>
+		</plugin>
+
+	</model>
+
+</sdf>

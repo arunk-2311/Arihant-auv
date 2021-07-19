@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="world" default="empty"/> 
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+
+    <!-- Use the logic of empty_world.launch, only renaming the world name to our customized world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <!-- Reference to the local world that is created -->
+        <arg name="world_name" value="$(find iitm_bot_gazebo)/worlds/iitm_bot.world"/>
+        <arg name="paused" value="true"/>
+    </include>
+    
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find iitm_bot_description)/urdf/iitm_bot.sdf -sdf -x 0 -y 0 -z 0 -model iitm_bot" />
+    <node name="XYZ" pkg="iitm_bot_control" type="iitm_control_bot" output="screen"/>
+</launch>
